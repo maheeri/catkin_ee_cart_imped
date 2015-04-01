@@ -31,6 +31,10 @@ add_library(${PROJECT_NAME} src/ee_cart_imped_control.cpp)
 add_library(ee_cart_imped_control_tool src/ee_cart_imped_control_tool.cpp src/pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
 add_library(ee_cart_imped_control_tool_mpc src/ee_cart_imped_control_tool_mpc.cpp src/pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
 add_executable(mpc_cart_opt src/mpc_cart_opt.cpp)
+
+# ensure that headers get built before their targets (might not be completely correct) 
+add_dependencies(mpc_cart_opt.cpp ${catkin_EXPORTED_TARGETS}) 
+
 #target_link_libraries(${PROJECT_NAME} another_library)
 #rosbuild_add_boost_directories()
 #rosbuild_link_boost(${PROJECT_NAME} thread)

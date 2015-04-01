@@ -33,3 +33,6 @@ add_executable(ee_cart_imped_action src/ee_cart_imped_action.cpp)
 add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp)
 add_executable(test_ee_cart_imped_action src/test_ee_cart_imped_action.cpp)
 target_link_libraries(test_ee_cart_imped_action ee_cart_action_lib)
+
+# ensure that headers get built before their targets (might not be completely correct) 
+add_dependencies(ee_cart_imped_action ${catkin_EXPORTED_TARGETS}) 

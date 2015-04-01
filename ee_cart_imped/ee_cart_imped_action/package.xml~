@@ -1,5 +1,5 @@
 <package>
-  <name>ee_cart_imped_action<name>
+  <name>ee_cart_imped_action</name>
   <description brief="">
 
      An action server and interface for the ee_cart_imped_control package.  The EECartImped Controller should always be accessed through this action.

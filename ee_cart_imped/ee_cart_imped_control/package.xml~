@@ -10,6 +10,7 @@
   <license>BSD</license>
   <review status="unreviewed" notes=""/>
   <url>http://ros.org/wiki/ee_cart_imped_control</url>
+  
   <depend package="geometry_msgs" />
   <depend package="kdl" />
   <depend package="pr2_controller_manager"/>
