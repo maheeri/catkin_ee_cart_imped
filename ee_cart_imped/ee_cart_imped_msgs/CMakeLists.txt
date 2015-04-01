@@ -9,21 +9,25 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
-rosbuild_find_ros_package(actionlib_msgs)
-include(${actionlib_msgs_PACKAGE_PATH}/cmake/actionbuild.cmake)
-genaction()
-
-rosbuild_init()
-
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
+#rosbuild_find_ros_package(actionlib_msgs) (Excluding this in catkin)
+#include(${actionlib_msgs_PACKAGE_PATH}/cmake/actionbuild.cmake)
+#genaction()
+
+# Replacing the above actionilb_msgs code with catkin equivalent
+find_package(catkin REQUIRED COMPONENTS actionlib_msgs) 
+add_action_files(DIRECTORY action FILES EECartImped.action)
+
 #uncomment if you have defined messages
-rosbuild_genmsg()
+generate_messages(DEPENDENCIES actionlib_msgs)
 #uncomment if you have defined services
 #rosbuild_gensrv()
+
+catkin_package(CATKIN_DEPENDS actionlib_msgs)
 
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)

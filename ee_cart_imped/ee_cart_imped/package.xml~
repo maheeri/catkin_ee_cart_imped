@@ -23,28 +23,28 @@
   
   <buildtool_depend>catkin</buildtool_depend>
   
-  <run_depend>actionlib</run_depend> <!-- replacing common in rosbuild with acitonlib -->
-  <run_depend>common_msgs</run_depend>
-  <run_depend>geometry</run_depend>
-  <run_depend>orocos_kinematics_library</run_depend>
-  <run_depend>pluginlib</run_depend>
-  <run_depend>pr2_mechanism</run_depend>
-  <run_depend>ros</run_depend>
-  <run_depend>ros_comm</run_depend>
+  <run_depend>actionlib<run_depend> <!-- replacing common in rosbuild with acitonlib -->
+  <run_depend>common_msgs<run_depend>
+  <run_depend>geometry<run_depend>
+  <run_depend>orocos_kinematics_library<run_depend>
+  <run_depend>pluginlib<run_depend>
+  <run_depend>pr2_mechanism<run_depend>
+  <run_depend>ros<run_depend>
+  <run_depend>ros_comm<run_depend>
   
-  <build_depend>actionlib</build_depend> <!-- replacing common in rosbuild with acitonlib -->
-  <build_depend>common_msgs</build_depend>
-  <build_depend>geometry</build_depend>
-  <build_depend>orocos_kinematics_dynamics</build_depend>
-  <build_depend>pluginlib</build_depend>
-  <build_depend>pr2_mechanism</build_depend>
-  <build_depend>ros</build_depend>
-  <build_depend>ros_comm</build_depend>
+  <build_depend>actionlib<build_depend> <!-- replacing common in rosbuild with acitonlib -->
+  <build_depend>common_msgs<build_depend>
+  <build_depend>geometry<build_depend>
+  <build_depend>orocos_kinematics_dynamics<build_depend>
+  <build_depend>pluginlib<build_depend>
+  <build_depend>pr2_mechanism<build_depend>
+  <build_depend>ros<build_depend>
+  <build_depend>ros_comm<build_depend>
   
-  <run_depend>ee_cart_imped_action</run_depend>
-  <run_depend>ee_cart_imped_launch</run_depend>
-  <run_depend>ee_cart_imped_msgs</run_depend>
-  <run_depend>ee_cart_imped_control</run_depend>
+  <run_depend>ee_cart_imped_action<run_depend>
+  <run_depend>ee_cart_imped_launch<run_depend>
+  <run_depend>ee_cart_imped_msgs<run_depend>
+  <run_depend>ee_cart_imped_control<run_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->

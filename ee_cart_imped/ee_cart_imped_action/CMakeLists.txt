@@ -9,8 +9,6 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
-rosbuild_init()
-
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
@@ -21,6 +19,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
+catkin_package()
+
 #common commands for building c++ executables and libraries
 #rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
 #target_link_libraries(${PROJECT_NAME} another_library)
@@ -29,7 +29,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(ee_cart_imped_action src/ee_cart_imped_action.cpp)
-rosbuild_add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp)
-rosbuild_add_executable(test_ee_cart_imped_action src/test_ee_cart_imped_action.cpp)
+add_executable(ee_cart_imped_action src/ee_cart_imped_action.cpp)
+add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp)
+add_executable(test_ee_cart_imped_action src/test_ee_cart_imped_action.cpp)
 target_link_libraries(test_ee_cart_imped_action ee_cart_action_lib)
