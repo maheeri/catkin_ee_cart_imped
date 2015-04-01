@@ -1,0 +1,17 @@
+<library path="lib/libee_cart_imped_control">
+    <class name="ee_cart_imped_control/EECartImpedControlPlugin"
+           type="ee_cart_imped_control_ns::EECartImpedControlClass"
+           base_class_type="pr2_controller_interface::Controller" />
+</library>
+
+<library path="lib/libee_cart_imped_control_tool">
+    <class name="ee_cart_imped_control/EECartImpedControlPluginTool"
+           type="ee_cart_imped_control_ns::EECartImpedControlClassTool"
+           base_class_type="pr2_controller_interface::Controller" />
+</library>
+
+<library path="lib/libee_cart_imped_control_tool_mpc">
+    <class name="ee_cart_imped_control/EECartImpedControlPluginToolMPC"
+           type="ee_cart_imped_control_ns::EECartImpedControlClassToolMPC"
+           base_class_type="pr2_controller_interface::Controller" />
+</library>

@@ -1,0 +1,7 @@
+<launch>
+    <!--Hopefully, lets us read pressure inside the ee_cart controller-->
+    <remap from="pressure" to="/pressure/l_gripper_motor"/>
+    <rosparam file="$(find ee_cart_imped_control)/pr2_arms_cart_imped_controller.yaml" command="load" />
+    <node pkg="pr2_controller_manager" type="unspawner" args="l_arm_controller"  name="l_arm_stopper"/>
+    <node pkg="pr2_controller_manager" type="spawner" args="l_arm_cart_imped_controller" name="l_arm_cart_imped_controller_spawner" output="screen"/>
+</launch>

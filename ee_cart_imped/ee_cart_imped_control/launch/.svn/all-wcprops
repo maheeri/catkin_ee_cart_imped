@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch
+END
+r_arm_cart_imped_controller_tool.launch
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/r_arm_cart_imped_controller_tool.launch
+END
+r_arm_cart_imped_controller.launch
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/r_arm_cart_imped_controller.launch
+END
+l_arm_cart_imped_controller_tool_mpc.launch
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/l_arm_cart_imped_controller_tool_mpc.launch
+END
+l_arm_cart_imped_controller_tool.launch
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/l_arm_cart_imped_controller_tool.launch
+END
+l_arm_cart_imped_controller.launch
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/l_arm_cart_imped_controller.launch
+END
+r_arm_cart_imped_controller_tool_mpc.launch
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/ee_cart_imped_control/!svn/ver/3/launch/r_arm_cart_imped_controller_tool_mpc.launch
+END

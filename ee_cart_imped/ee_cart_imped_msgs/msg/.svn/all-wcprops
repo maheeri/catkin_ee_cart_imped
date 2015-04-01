@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg
+END
+EECartImpedActionResult.msg
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedActionResult.msg
+END
+EECartImpedAction.msg
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedAction.msg
+END
+EECartImpedResult.msg
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedResult.msg
+END
+EECartImpedActionGoal.msg
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedActionGoal.msg
+END
+EECartImpedActionFeedback.msg
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedActionFeedback.msg
+END
+EECartImpedGoal.msg
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedGoal.msg
+END
+StiffPoint.msg
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/StiffPoint.msg
+END
+EECartImpedFeedback.msg
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/mit-ros-pkg/!svn/ver/3778/stacks/fuerte/trunk/ee_cart_imped/ee_cart_imped_msgs/msg/EECartImpedFeedback.msg
+END
