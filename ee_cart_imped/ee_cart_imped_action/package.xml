@@ -1,27 +1,56 @@
 <package>
   <name>ee_cart_imped_action</name>
-  <description brief="">
+  <version>1.0.0</version>
+  <description>An action server and interface for the ee_cart_imped_control package.  The EECartImped Controller should always be accessed through this action.</description>
+  <maintainer email="">Jenny Barry</maintainer>
+  <maintainer email="">Mario Bollini</maintainer>
+  <maintainer email="">and Huan Liu</maintainer>
 
-     An action server and interface for the ee_cart_imped_control package.  The EECartImped Controller should always be accessed through this action.
-
-  </description>
-  <author>Jenny Barry, Mario Bollini, and Huan Liu</author>
   <license>BSD</license>
-  <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/ee_cart_imped_action</url>
-  <depend package="actionlib"/>
-  <depend package="roscpp"/>
-  <depend package="rospy"/>
-  <depend package="roslib"/>
-  <depend package="std_msgs"/>
-  <depend package="actionlib_msgs"/>
-  <depend package="ee_cart_imped_msgs"/>
-  <depend package="tf"/>
-  <export>
-    <cpp cflags="-I${prefix}/include" lflags="-L${prefix}/lib -lee_cart_action_lib"/>
+
+  <url type="website">http://ros.org/wiki/ee_cart_imped_action</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Jenny Barry</author>
+  <author>Mario Bollini</author>
+  <author>and Huan Liu</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>actionlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>roslib</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_depend>actionlib_msgs</build_depend>
+  <build_depend>ee_cart_imped_msgs</build_depend>
+  <build_depend>tf</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>actionlib</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>roslib</run_depend>
+  <run_depend>std_msgs</run_depend>
+  <run_depend>actionlib_msgs</run_depend>
+  <run_depend>ee_cart_imped_msgs</run_depend>
+  <run_depend>tf</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>actionlib</test_depend> -->
+  <!-- <test_depend>roscpp</test_depend> -->
+  <!-- <test_depend>rospy</test_depend> -->
+  <!-- <test_depend>roslib</test_depend> -->
+  <!-- <test_depend>std_msgs</test_depend> -->
+  <!-- <test_depend>actionlib_msgs</test_depend> -->
+  <!-- <test_depend>ee_cart_imped_msgs</test_depend> -->
+  <!-- <test_depend>tf</test_depend> -->
+
+<export>
+    <cpp lflags="-L${prefix}/lib -lee_cart_action_lib" cflags="-I${prefix}/include"/>
     <rosdoc config="rosdoc.yaml"/>
-  </export>
+</export>
 
 </package>
-
-

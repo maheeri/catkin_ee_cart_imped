@@ -1,58 +1,38 @@
-<?xml version="1.0"?>
 <package>
-  <name>ee_cart_imped</name>
-  <version>0.0.0</version>
-  <description>The ee_cart_imped package</description>
-
-  <maintainer email="robo328d@todo.todo">robo328d</maintainer>
-
+  <name></name>
+  <version>1.0.0</version>
+  <description>Stack for a controller that does force/impedance end effector Cartesian control.</description>
+  <maintainer email="">Maintained by Jenny Barry</maintainer>
+  <maintainer email="">Mario Bollini</maintainer>
+  <maintainer email="">and Huan Liu</maintainer>
 
   <license>BSD</license>
 
-  <!-- The *_depend tags are used to specify dependencies -->
-  <!-- Dependencies can be catkin packages or system dependencies -->
-  <!-- Examples: -->
-  <!-- Use build_depend for packages you need at compile time: -->
-  <!--   <build_depend>message_generation</build_depend> -->
-  <!-- Use buildtool_depend for build tool packages: -->
-  <!--   <buildtool_depend>catkin</buildtool_depend> -->
-  <!-- Use run_depend for packages you need at runtime: -->
-  <!--   <run_depend>message_runtime</run_depend> -->
-  <!-- Use test_depend for packages you need only for testing: -->
-  <!--   <test_depend>gtest</test_depend> -->
-  
+  <url type="website">http://ros.org/wiki/ee_cart_imped</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Maintained by Jenny Barry</author>
+  <author>Mario Bollini</author>
+  <author>and Huan Liu</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
   <buildtool_depend>catkin</buildtool_depend>
-  
-  <run_depend>actionlib<run_depend> <!-- replacing common in rosbuild with acitonlib -->
-  <run_depend>common_msgs<run_depend>
-  <run_depend>geometry<run_depend>
-  <run_depend>orocos_kinematics_library<run_depend>
-  <run_depend>pluginlib<run_depend>
-  <run_depend>pr2_mechanism<run_depend>
-  <run_depend>ros<run_depend>
-  <run_depend>ros_comm<run_depend>
-  
-  <build_depend>actionlib<build_depend> <!-- replacing common in rosbuild with acitonlib -->
-  <build_depend>common_msgs<build_depend>
-  <build_depend>geometry<build_depend>
-  <build_depend>orocos_kinematics_dynamics<build_depend>
-  <build_depend>pluginlib<build_depend>
-  <build_depend>pr2_mechanism<build_depend>
-  <build_depend>ros<build_depend>
-  <build_depend>ros_comm<build_depend>
-  
-  <run_depend>ee_cart_imped_action<run_depend>
-  <run_depend>ee_cart_imped_launch<run_depend>
-  <run_depend>ee_cart_imped_msgs<run_depend>
-  <run_depend>ee_cart_imped_control<run_depend>
+
+  <!-- Dependencies needed to compile this package. -->
 
 
-  <!-- The export tag contains other, unspecified, tags -->
-  <export>
-    <!-- You can specify that this package is a metapackage here: -->
-    <!-- <metapackage/> -->
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>ee_cart_imped_control</run_depend>
+  <run_depend>ee_cart_imped_launch</run_depend>
+  <run_depend>ee_cart_imped_action</run_depend>
+  <run_depend>ee_cart_imped_msgs</run_depend>
 
-    <!-- Other tools can request additional information be placed here -->
+  <!-- Dependencies needed only for running tests. -->
 
-  </export>
+
+
+
+
+
+
 </package>

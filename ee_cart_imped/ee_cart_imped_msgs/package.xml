@@ -1,16 +1,34 @@
 <package>
   <name>ee_cart_imped_msgs</name>
-  <description brief="ee_cart_imped_msgs">
+  <version>1.0.0</version>
+  <description>Messages for ee_cart_imped stack.</description>
+  <maintainer email="">Jenny Barry</maintainer>
+  <maintainer email="">Mario Bollini</maintainer>
+  <maintainer email="">and Huan Liu</maintainer>
 
-     Messages for ee_cart_imped stack.
-
-  </description>
-  <author>Jenny Barry, Mario Bollini, and Huan Liu</author>
   <license>BSD</license>
-  <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/ee_cart_imped_msgs</url>
-  <depend package="geometry_msgs"/>
-  <depend package="actionlib_msgs"/>
+
+  <url type="website">http://ros.org/wiki/ee_cart_imped_msgs</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Jenny Barry</author>
+  <author>Mario Bollini</author>
+  <author>and Huan Liu</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>actionlib_msgs</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>actionlib_msgs</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>geometry_msgs</test_depend> -->
+  <!-- <test_depend>actionlib_msgs</test_depend> -->
 
 </package>
 

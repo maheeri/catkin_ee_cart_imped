@@ -1,5 +1,6 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(ee_cart_imped_msgs)
+
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -9,30 +10,32 @@ include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
 #  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
 #set(ROS_BUILD_TYPE RelWithDebInfo)
 
+#rosbuild_find_ros_package(actionlib_msgs) (Excluding this in catkin)
+#include(${actionlib_msgs_PACKAGE_PATH}/cmake/actionbuild.cmake)
+#genaction()
+
+# Load catkin and all dependencies required for this package
+# TODO: remove all from COMPONENTS that are not catkin packages.
+# Replacing the above actionilb_msgs code with catkin equivalent
+find_package(catkin REQUIRED COMPONENTS actionlib_msgs) 
+add_action_files(DIRECTORY action FILES EECartImped.action)
+
 #set the default path for built executables to the "bin" directory
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-#rosbuild_find_ros_package(actionlib_msgs) (Excluding this in catkin)
-#include(${actionlib_msgs_PACKAGE_PATH}/cmake/actionbuild.cmake)
-#genaction()
+generate_messages(
+    DEPENDENCIES actionlib_msgs
+)
 
-# Replacing the above actionilb_msgs code with catkin equivalent
-find_package(catkin REQUIRED COMPONENTS actionlib_msgs) 
-add_action_files(DIRECTORY action FILES EECartImped.action)
+# TODO: fill in what other packages will need to use this package
+catkin_package(
+    DEPENDS
+    CATKIN_DEPENDS geometry_msgs actionlib_msgs
+    INCLUDE_DIRS # TODO include
+    LIBRARIES # TODO
+)
 
-#uncomment if you have defined messages
-generate_messages(DEPENDENCIES actionlib_msgs)
-#uncomment if you have defined services
-#rosbuild_gensrv()
-
-catkin_package(CATKIN_DEPENDS actionlib_msgs)
-
-#common commands for building c++ executables and libraries
-#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
-#target_link_libraries(example ${PROJECT_NAME})
+include_directories(${Boost_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})

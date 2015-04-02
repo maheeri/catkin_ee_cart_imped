@@ -1,16 +1,34 @@
 <package>
   <name>ee_cart_imped_launch</name>
-  <description brief="ee_cart_imped_launch">
+  <version>1.0.0</version>
+  <description>Launch files for the ee_cart_imped stack.</description>
+  <maintainer email="">Jenny Barry</maintainer>
+  <maintainer email="">Mario Bollini</maintainer>
+  <maintainer email="">and Huan Liu</maintainer>
 
-    Launch files for the ee_cart_imped stack.
-
-  </description>
-  <author>Jenny Barry, Mario Bollini, and Huan Liu</author>
   <license>BSD</license>
-  <review status="unreviewed" notes=""/>
-  <url>http://ros.org/wiki/ee_cart_imped_launch</url>
-  <depend package="ee_cart_imped_action"/>
-  <depend package="ee_cart_imped_control"/>
+
+  <url type="website">http://ros.org/wiki/ee_cart_imped_launch</url>
+  <!-- <url type="bugtracker"></url> -->
+
+  <author>Jenny Barry</author>
+  <author>Mario Bollini</author>
+  <author>and Huan Liu</author>
+
+  <!-- Dependencies which this package needs to build itself. -->
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- Dependencies needed to compile this package. -->
+  <build_depend>ee_cart_imped_action</build_depend>
+  <build_depend>ee_cart_imped_control</build_depend>
+
+  <!-- Dependencies needed after this package is compiled. -->
+  <run_depend>ee_cart_imped_action</run_depend>
+  <run_depend>ee_cart_imped_control</run_depend>
+
+  <!-- Dependencies needed only for running tests. -->
+  <!-- <test_depend>ee_cart_imped_action</test_depend> -->
+  <!-- <test_depend>ee_cart_imped_control</test_depend> -->
 
 </package>
 
