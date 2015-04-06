@@ -1,5 +1,8 @@
-cmake_minimum_required(VERSION 2.4.6)
-include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+cmake_minimum_required(VERSION 2.8.3)
+project(ee_cart_imped_control)
+# Load catkin and all dependencies required for this package
+# TODO: remove all from COMPONENTS that are not catkin packages.
+find_package(catkin REQUIRED COMPONENTS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller eigen)
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -14,17 +17,13 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 #set the default path for built libraries to the "lib" directory
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-#uncomment if you have defined messages
-#rosbuild_genmsg()
-#uncomment if you have defined services
-#rosbuild_gensrv()
-
-# Comment the Eigen stuff out if there are issues 
-find_package(Eigen REQUIRED)
-include_directories(${EIGEN_INCLUDE_DIRS})
-add_definitions(${EIGEN_DEFINITIONS})
-
-catkin_package()
+# TODO: fill in what other packages will need to use this package
+catkin_package(
+    DEPENDS 
+    CATKIN_DEPENDS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller eigen
+    INCLUDE_DIRS # TODO include
+    LIBRARIES # TODO
+)
 
 #common commands for building c++ executables and libraries
 add_library(${PROJECT_NAME} src/ee_cart_imped_control.cpp)
@@ -32,12 +31,13 @@ add_library(ee_cart_imped_control_tool src/ee_cart_imped_control_tool.cpp src/pr
 add_library(ee_cart_imped_control_tool_mpc src/ee_cart_imped_control_tool_mpc.cpp src/pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
 add_executable(mpc_cart_opt src/mpc_cart_opt.cpp)
 
+include_directories(${Boost_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+# NEED TO DO SOME MORE WORK WITH THIS 
+find_package(Eigen REQUIRED)
+include_directories(${EIGEN_INCLUDE_DIRS})
+add_definitions(${EIGEN_DEFINITIONS})
+
 # ensure that headers get built before their targets (might not be completely correct) 
-add_dependencies(mpc_cart_opt.cpp ${catkin_EXPORTED_TARGETS}) 
-
-#target_link_libraries(${PROJECT_NAME} another_library)
-#rosbuild_add_boost_directories()
-#rosbuild_link_boost(${PROJECT_NAME} thread)
-#rosbuild_add_executable(example examples/example.cpp)
-#target_link_libraries(example ${PROJECT_NAME})
-
+add_dependencies(mpc_cart_opt.cpp ${catkin_EXPORTED_TARGETS})

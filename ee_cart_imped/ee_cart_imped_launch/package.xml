@@ -2,10 +2,8 @@
   <name>ee_cart_imped_launch</name>
   <version>1.0.0</version>
   <description>Launch files for the ee_cart_imped stack.</description>
-  <maintainer email="">Jenny Barry</maintainer>
-  <maintainer email="">Mario Bollini</maintainer>
-  <maintainer email="">and Huan Liu</maintainer>
-
+  <maintainer email="stub@none.com">Maheer Iqbal</maintainer>
+  
   <license>BSD</license>
 
   <url type="website">http://ros.org/wiki/ee_cart_imped_launch</url>

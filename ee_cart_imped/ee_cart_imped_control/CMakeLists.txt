@@ -19,8 +19,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # TODO: fill in what other packages will need to use this package
 catkin_package(
-    DEPENDS 
-    CATKIN_DEPENDS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller eigen
+    DEPENDS eigen 
+    CATKIN_DEPENDS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller
     INCLUDE_DIRS # TODO include
     LIBRARIES # TODO
 )

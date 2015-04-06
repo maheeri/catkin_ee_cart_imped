@@ -2,9 +2,7 @@
   <name>ee_cart_imped_control</name>
   <version>1.0.0</version>
   <description>A force/impedance controller.</description>
-  <maintainer email="">Mario Bollini</maintainer>
-  <maintainer email="">Jenny Barry</maintainer>
-  <maintainer email="">and Huan Liu</maintainer>
+  <maintainer email="stub@none.com">Maheer Iqbal</maintainer>
 
   <license>BSD</license>
 

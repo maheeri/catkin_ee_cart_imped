@@ -2,9 +2,7 @@
   <name>ee_cart_imped_msgs</name>
   <version>1.0.0</version>
   <description>Messages for ee_cart_imped stack.</description>
-  <maintainer email="">Jenny Barry</maintainer>
-  <maintainer email="">Mario Bollini</maintainer>
-  <maintainer email="">and Huan Liu</maintainer>
+  <maintainer email="stub@none.com">Maheer Iqbal</maintainer>
 
   <license>BSD</license>
 

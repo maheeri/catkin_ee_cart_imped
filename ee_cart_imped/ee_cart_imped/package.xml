@@ -1,10 +1,8 @@
 <package>
-  <name></name>
+  <name>ee_cart_imped</name>
   <version>1.0.0</version>
   <description>Stack for a controller that does force/impedance end effector Cartesian control.</description>
-  <maintainer email="">Maintained by Jenny Barry</maintainer>
-  <maintainer email="">Mario Bollini</maintainer>
-  <maintainer email="">and Huan Liu</maintainer>
+  <maintainer email="stub@none.com">Maheer Iqbal</maintainer>
 
   <license>BSD</license>
 
@@ -27,12 +25,8 @@
   <run_depend>ee_cart_imped_action</run_depend>
   <run_depend>ee_cart_imped_msgs</run_depend>
 
-  <!-- Dependencies needed only for running tests. -->
-
-
-
-
-
-
+  <export>
+   <metapackage />
+ </export>
 
 </package>
