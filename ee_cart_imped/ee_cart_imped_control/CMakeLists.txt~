@@ -2,7 +2,14 @@ cmake_minimum_required(VERSION 2.8.3)
 project(ee_cart_imped_control)
 # Load catkin and all dependencies required for this package
 # TODO: remove all from COMPONENTS that are not catkin packages.
-find_package(catkin REQUIRED COMPONENTS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller eigen)
+find_package(catkin REQUIRED COMPONENTS geometry_msgs pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller eigen)
+
+find_package(orocos_kdl REQUIRED)
+
+# NEED TO DO SOME MORE WORK WITH THIS 
+find_package(Eigen REQUIRED)
+include_directories(${EIGEN_INCLUDE_DIRS})
+add_definitions(${EIGEN_DEFINITIONS})
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -19,8 +26,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # TODO: fill in what other packages will need to use this package
 catkin_package(
-    DEPENDS eigen 
-    CATKIN_DEPENDS geometry_msgs kdl pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller
+    DEPENDS eigen orocos_kdl
+    CATKIN_DEPENDS geometry_msgs pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs pr2_gripper_sensor_controller
     INCLUDE_DIRS # TODO include
     LIBRARIES # TODO
 )
@@ -34,10 +41,7 @@ add_executable(mpc_cart_opt src/mpc_cart_opt.cpp)
 include_directories(${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
-# NEED TO DO SOME MORE WORK WITH THIS 
-find_package(Eigen REQUIRED)
-include_directories(${EIGEN_INCLUDE_DIRS})
-add_definitions(${EIGEN_DEFINITIONS})
+
 
 # ensure that headers get built before their targets (might not be completely correct) 
 add_dependencies(mpc_cart_opt.cpp ${catkin_EXPORTED_TARGETS})
