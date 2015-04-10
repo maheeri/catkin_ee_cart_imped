@@ -17,7 +17,12 @@ project(ee_cart_imped_msgs)
 # Load catkin and all dependencies required for this package
 # TODO: remove all from COMPONENTS that are not catkin packages.
 # Replacing the above actionilb_msgs code with catkin equivalent
-find_package(catkin REQUIRED COMPONENTS actionlib_msgs geometry_msgs) 
+find_package(catkin REQUIRED COMPONENTS actionlib_msgs geometry_msgs message_generation)
+
+catkin_python_setup()
+
+add_message_files(DIRECTORY msg FILES StiffPoint.msg)
+ 
 add_action_files(DIRECTORY action FILES EECartImped.action)
 
 #set the default path for built executables to the "bin" directory
@@ -26,16 +31,17 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 generate_messages(
-    DEPENDENCIES actionlib_msgs geometry_msgs
+    DEPENDENCIES actionlib_msgs geometry_msgs std_msgs
 )
 
 # TODO: fill in what other packages will need to use this package
 catkin_package(
     DEPENDS
-    CATKIN_DEPENDS geometry_msgs actionlib_msgs
+    CATKIN_DEPENDS geometry_msgs actionlib_msgs message_runtime
     INCLUDE_DIRS # TODO include
     LIBRARIES # TODO
 )
 
-include_directories(${Boost_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+# Don't know if I need these last two lines 
+#include_directories(${Boost_INCLUDE_DIRS})
+#target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
