@@ -18,7 +18,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 catkin_package(
     DEPENDS ee_cart_imped_action ee_cart_imped_control
     CATKIN_DEPENDS # TODO
-    INCLUDE_DIRS # TODO include
+    INCLUDE_DIRS ${catkin_INCLUDE_DIRS}
     LIBRARIES # TODO
 )
 

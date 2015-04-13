@@ -4,6 +4,7 @@ project(ee_cart_imped_action)
 # TODO: remove all from COMPONENTS that are not catkin packages.
 find_package(catkin REQUIRED COMPONENTS actionlib roscpp rospy roslib std_msgs actionlib_msgs tf)
 
+find_package(ee_cart_imped_msgs REQUIRED)
 
 # Set the build type.  Options are:
 #  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
@@ -22,7 +23,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 catkin_package(
     DEPENDS ee_cart_imped_msgs
     CATKIN_DEPENDS actionlib roscpp rospy roslib std_msgs actionlib_msgs tf
-    INCLUDE_DIRS # TODO include
+    INCLUDE_DIRS include ${catkin_INCLUDE_DIRS}
     LIBRARIES # TODO
 )
 
@@ -32,7 +33,7 @@ add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp)
 add_executable(test_ee_cart_imped_action src/test_ee_cart_imped_action.cpp)
 target_link_libraries(test_ee_cart_imped_action ee_cart_action_lib)## Generate added messages and services with any dependencies listed here
 
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories(include ${Boost_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
 
 # ensure that headers get built before their targets (might not be completely correct) 
