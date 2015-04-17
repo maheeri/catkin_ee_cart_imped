@@ -25,6 +25,7 @@
   <build_depend>actionlib_msgs</build_depend>
   <build_depend>ee_cart_imped_msgs</build_depend>
   <build_depend>tf</build_depend>
+  <build_depend>rosconsole</build_depend>
 
   <!-- Dependencies needed after this package is compiled. -->
   <run_depend>actionlib</run_depend>
@@ -35,7 +36,8 @@
   <run_depend>actionlib_msgs</run_depend>
   <run_depend>ee_cart_imped_msgs</run_depend>
   <run_depend>tf</run_depend>
-
+  <run_depend>rosconsole</run_depend>
+  
   <!-- Dependencies needed only for running tests. -->
   <!-- <test_depend>actionlib</test_depend> -->
   <!-- <test_depend>roscpp</test_depend> -->
