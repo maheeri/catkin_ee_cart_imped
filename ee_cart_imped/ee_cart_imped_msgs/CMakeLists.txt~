@@ -38,7 +38,7 @@ generate_messages(
 catkin_package(
     DEPENDS
     CATKIN_DEPENDS geometry_msgs actionlib_msgs message_runtime
-    INCLUDE_DIRS
+    INCLUDE_DIRS ${catkin_INCLUDE_DIRS}
     LIBRARIES # TODO
 )
 

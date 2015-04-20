@@ -23,7 +23,7 @@
 
 //#include <pr2_gripper_sensor_controller/pressure_observer.h>
 //#include <pr2_gripper_sensor_controller/acceleration_observer.h>
-#include <ee_cart_imped_control/pressure_observer.h>
+//#include <ee_cart_imped_control/pressure_observer.h>
 #include <ee_cart_imped_control/acceleration_observer.h>
 #include <pr2_hardware_interface/hardware_interface.h>
 
@@ -48,7 +48,7 @@
 // 1kHz/WRENCH_PD on WRENCH_TOPIC
 #define SEND_WRENCH
 #define WRENCH_TOPIC "wrenchApplied"
-#define WRENCH_PD 50
+#define WRENCH_PD 25
 
 // If defined, we'll log a bunch of data to the talker topic as space-separated
 // numbers (so it's easy to parse)
@@ -274,8 +274,8 @@ namespace ee_cart_imped_control_ns {
     wrenchPub;
     #endif
 
-    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
-    pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
+//    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
+//    pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
 
     double pressIntegral;
     double pressDiffZero;    

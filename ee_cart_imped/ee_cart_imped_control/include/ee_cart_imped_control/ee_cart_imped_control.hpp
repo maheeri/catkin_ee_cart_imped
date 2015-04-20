@@ -23,7 +23,7 @@
 
 //#include <pr2_gripper_sensor_controller/pressure_observer.h>
 //#include <pr2_gripper_sensor_controller/acceleration_observer.h>
-#include <ee_cart_imped_control/pressure_observer.h>
+//#include <ee_cart_imped_control/pressure_observer.h>
 #include <ee_cart_imped_control/acceleration_observer.h>
 #include <pr2_hardware_interface/hardware_interface.h>
 
@@ -193,8 +193,8 @@ namespace ee_cart_imped_control_ns {
 	std_msgs::String> > 
     talker;
 
-    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
-    pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
+//    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
+//   pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
 
     double pressIntegral;
     double pressDiffZero;    

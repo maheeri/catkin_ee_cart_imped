@@ -1,5 +1,5 @@
-#ifndef __EE_CART_IMPED_CONTROL_TOOL_HPP__
-#define __EE_CART_IMPED_CONTROL_TOOL_HPP__
+#ifndef __EE_CART_IMPED_CONTROL_HPP__
+#define __EE_CART_IMPED_CONTROL_HPP__
 
 #include <pr2_controller_interface/controller.h>
 #include <pr2_mechanism_model/chain.h>
@@ -36,35 +36,11 @@
 #include <algorithm>
 #include <cmath>
 
-// If not commented out, will disable pressure sensor code
-// Needs to be defined to run in Gazebo
-// Will just do regular force control instead of pressure servoing
-#define PRESS_DBG
-
-// If defined, will make the X axis pressure-servoed
-//#define X_PRESS
-
-// If defined, will transmit out the applied wrench at a rate of 
-// 1kHz/WRENCH_PD on WRENCH_TOPIC
-#define SEND_WRENCH
-#define WRENCH_TOPIC "wrenchApplied"
-#define WRENCH_PD 25
-
-// If defined, we'll log a bunch of data to the talker topic as space-separated
-// numbers (so it's easy to parse)
-//#define LOG_DATA
-
-// epsilon for force/stiff being near 0
-#define F_EPS 1e-6
-
 //Doxygen doesn't like these comments for some reason...
 ///Maximum stiffness for translation
 //WARRANTY VOIDED! Raised the stiffness cap by a lot.
 //DO NOT USE THIS FOR BIG CHANGES! Meant for smooth trajectories
 //where we want to reduce error!
-//You probably shouldn't get anywhere close to this limit either,
-//it's just set high to make sure you don't run into it. 2500 is
-//about as high as you should go!
 #define MAX_STIFFNESS 5000.0
 
 ///Maximum stiffness for rotation
@@ -76,32 +52,14 @@
 #define INIT_STIFFNESS 1000.0
 #define INIT_ROT_STIFFNESS 75.0
 
-//Fingertip pressure controller params.
-//PI controller gains (P component is proportional to command, not error)
-#define KP_PR -0.5
-#define KI_PR -0.0003
-#define NEG_KI
-
-//Maximum absolute and initial forces to apply
-//Initial force helps to get the tool in contact with the surface quicker,
-//but should be low enough that it can easily be corrected for if it turns
-//out to be too much.
-#define MAX_VERT_F 20.0
-#define INIT_VERT_F 2.0
-
+//Pressure controller parameters, only used when servoing fingertip pressure
+#define KP_PR -2
+#define KI_PR 0.004
+#define MAX_VERT_F 9.0
+#define INIT_VERT_F -4.0
 #define MAX_TAU_DIFF 1.0
 
-//Gain for derviative term for rotational components. Without this, controller
-// will oscillate for some orientations
 #define KD_ROT 500.0
-//#define KD_ROT 250.0
-
-//Rotation around gripper Z axis to get to tool frame
-//This should give us a tool frame attached to the gripper where the X and Y
-//axes define the gripper plane, with the Y axis pointing "up" (the direction
-//we probably want to apply force in), and the X pointing "forwards". Z
-//will be the gripper plane normal, pointing out of it ("sideways")
-#define TOOL_ROT_ANG 0
 
 namespace ee_cart_imped_control_ns {
 
@@ -113,7 +71,7 @@ namespace ee_cart_imped_control_ns {
    * action wrapper, 
    *<A href=http://www.ros.org/wiki/ee_cart_imped_action>EECartImpedAction</A>.
    */
-  class EECartImpedControlClassTool: public pr2_controller_interface::Controller {
+  class EECartImpedControlClass: public pr2_controller_interface::Controller {
   private:
     
     /// The current robot state 
@@ -153,11 +111,10 @@ namespace ee_cart_imped_control_ns {
     
     /// Tip pose
     // Referenced only in update loop
-    KDL::Frame     x_, x_tool_;
-
+    KDL::Frame     x_; 
     /// Tip desired pose          
     // Referenced only in update loop
-    KDL::Frame     xd_, xd_tool_;
+    KDL::Frame     xd_;
     
     /// Cartesian error
     // Referenced only in update loop
@@ -180,41 +137,10 @@ namespace ee_cart_imped_control_ns {
     // Referenced only in update loop
     KDL::Jacobian  J_;
 
-    //Reference rotation frame. Typically, this will be attached to the desired
-    //gripper frame from the previous timestep (but not the actual frame since
-    //this would introduce error). Force/stiffness control occurs in this frame,
-    //rather than the global frame, since we'll probably want to make this
-    //choice based on gripper axes rather than global axes when not working
-    //with planar objects
-    KDL::Frame tool_frame_;
-
-    // Should the tool frame be used relative to the hand frame, or as a fixed
-    // frame relative to the global frame?
-    // This is useful because for some applications, the hand may be rotating,
-    // but we want force/stiffness commands relative to some fixed frame
-    // Specified by the use_fixed_frame parameter (default false)
-    bool use_fixed_frame_;
-
-    //Rotation from the hand frame (orientation specified in input traj's) to
-    //the tool frame (which we choose force/stiffness control relative to)
-    //Important so we can hold the tool at an angle and feel force on the
-    //fingertips, and for other applications where the natural axes of F/S
-    //control might be offset from the hand's
-    KDL::Rotation hand_to_tool_;
-
-    //Buffer for a new hand to tool rotation. The rotation stored here will
-    //only be put into effect when the next new trajectory is received,
-    //since switching this in the middle of a run might break things
-    KDL::Rotation new_hand_to_tool_;
-
     // Store some info from the gripper tips
     int gripTipDiff;
 
-    // Depending on the tool, downwards pressure might either increase or
-    // decrease the tip differential. Store the sign of this, as communicated
-    // by the zeroing command (set based on the sign of the sentinel value)
-    // Could also use this value to dynamically scale
-    int gripTipScale;
+
 
 
     ///The time at which the goal we saw on the last iteration was started
@@ -253,7 +179,7 @@ namespace ee_cart_imped_control_ns {
     /// Proportional gains
     //Referenced only in update loop
     KDL::Twist     Kp_;
-    // Derivative gains
+    /// Derivative gains
     //Referenced only in update loop
     KDL::Twist     Kd_;   
     
@@ -267,15 +193,8 @@ namespace ee_cart_imped_control_ns {
 	std_msgs::String> > 
     talker;
 
-    #ifdef SEND_WRENCH
-    boost::scoped_ptr<
-      realtime_tools::RealtimePublisher<
-	geometry_msgs::Wrench> > 
-    wrenchPub;
-    #endif
-
-//    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
-//    pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
+    accelerationObserver *myAccelerationObserver;   ///< accelerometer observer object
+    pressureObserver *myPressureObserver;           ///< pressure observer object to do analysis on the incoming pressure sensor dat
 
     double pressIntegral;
     double pressDiffZero;    
@@ -313,16 +232,25 @@ namespace ee_cart_imped_control_ns {
     void commandCB(const ee_cart_imped_msgs::EECartImpedGoalConstPtr &msg);
     ros::NodeHandle node_;
     ros::Subscriber subscriber_;
-    ros::Subscriber tool_pose_sub_;
-
-    void toolPoseCB(const geometry_msgs::Pose &msg);
+    ros::Subscriber tool_pose_sub;
     
+    /**
+     *\brief Callback when a new fingertip message comes
+     *
+     *Populates some class vars with new values. Hopefully we don't hit race
+     *conditions D:
+     *
+     *@param msg the new fingertip state
+     *
+     */
+    void tipCallback(const pr2_msgs::PressureState &msg);
+
     /**
      *\brief Samples the interpolation and returns the point the
      * joints should currently be trying to achieve.
      *
      * Samples the interpolation, using 
-     * EECartImpedControlClassTool::linearlyInterpolate, between the
+     * EECartImpedControlClass::linearlyInterpolate, between the
      * current trajectory point and the next trajectory point.  Interpolation
      * is done for position and orientation, but not for wrench or stiffness
      * as generally it is desired that wrench or stiffness be constant
@@ -373,7 +301,7 @@ namespace ee_cart_imped_control_ns {
      * \brief Controller update loop in realtime
      *
      * A PD controller for achieving the trajectory.
-     * Uses EECartImpedControlClassTool::sampleInterpolation to
+     * Uses EECartImpedControlClass::sampleInterpolation to
      * find the point that should be achieved on the current timestep.
      * Converts this point (which is in Cartesian coordinates) to joint
      * angles and uses a PD update (in the case of stiffness) to send
@@ -385,7 +313,7 @@ namespace ee_cart_imped_control_ns {
     /**
      * \brief Controller stopping in realtime
      *
-     * Calls EECartImpedControlClassTool::starting() to lock the joints into
+     * Calls EECartImpedControlClass::starting() to lock the joints into
      * their current position.
      *
      */

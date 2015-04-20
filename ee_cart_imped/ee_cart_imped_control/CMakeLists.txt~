@@ -26,17 +26,20 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 # TODO: fill in what other packages will need to use this package
 catkin_package(
-    DEPENDS eigen orocos_kdl
-    CATKIN_DEPENDS geometry_msgs pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools ee_cart_imped_msgs pr2_msgs
-    INCLUDE_DIRS include ${catkin_INCLUDE_DIRS}
+    DEPENDS eigen orocos_kdl ee_cart_imped_msgs
+    CATKIN_DEPENDS geometry_msgs pr2_controller_manager pr2_controller_interface pr2_mechanism_model pluginlib actionlib actionlib_msgs realtime_tools pr2_msgs
+    INCLUDE_DIRS include ${catkin_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS}
     LIBRARIES # TODO
 )
 
+include_directories(include ${catkin_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS})
+
 #common commands for building c++ executables and libraries
-add_library(${PROJECT_NAME} src/ee_cart_imped_control.cpp)
-add_library(ee_cart_imped_control_tool src/ee_cart_imped_control_tool.cpp src/pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
-add_library(ee_cart_imped_control_tool_mpc src/ee_cart_imped_control_tool_mpc.cpp src/pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
-add_executable(mpc_cart_opt src/mpc_cart_opt.cpp)
+#add_library(${PROJECT_NAME} src/ee_cart_imped_control.cpp)
+add_library(ee_cart_imped_control_tool src/ee_cart_imped_control_tool.cpp src/digitalFilter.cpp)
+#add_library(ee_cart_imped_control_tool src/pressure_observer.cpp src/ee_cart_imped_control_tool.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
+#add_library(ee_cart_imped_control_tool_mpc src/ee_cart_imped_control_tool_mpc.cpp src/#pressure_observer.cpp src/acceleration_observer.cpp src/digitalFilter.cpp)
+#add_executable(mpc_cart_opt src/mpc_cart_opt.cpp)
 
 include_directories(include ${Boost_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})

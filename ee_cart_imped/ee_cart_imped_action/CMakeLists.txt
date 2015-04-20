@@ -23,16 +23,19 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 catkin_package(
     DEPENDS ee_cart_imped_msgs
     CATKIN_DEPENDS actionlib roscpp rospy rosconsole roslib std_msgs actionlib_msgs tf
-    INCLUDE_DIRS include ${catkin_INCLUDE_DIRS}
+    INCLUDE_DIRS include ${catkin_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS}
     LIBRARIES # TODO
 )
 
+include_directories(include ${catkin_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS})
+
 #common commands for building c++ executables and libraries
 add_executable(ee_cart_imped_action src/ee_cart_imped_action.cpp)
-add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp)
+add_library(ee_cart_action_lib src/ee_cart_imped_arm.cpp) # Add required libraries for ee_cart_action_lib
+target_link_libraries(ee_cart_action_lib ${catkin_LIBRARIES})
 add_executable(test_ee_cart_imped_action src/test_ee_cart_imped_action.cpp)
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
-target_link_libraries(test_ee_cart_imped_action ee_cart_action_lib)## Generate added messages and services with any dependencies listed here
+target_link_libraries(test_ee_cart_imped_action ee_cart_action_lib ${catkin_LIBRARIES})## Generate added messages and services with any dependencies listed here
 
 #include_directories(include ${Boost_INCLUDE_DIRS} ${ee_cart_imped_msgs_INCLUDE_DIRS})
 #target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})

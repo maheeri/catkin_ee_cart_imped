@@ -39,7 +39,7 @@
   <run_depend>rosconsole</run_depend>
   
   <!-- Dependencies needed only for running tests. -->
-  <!-- <test_depend>actionlib</test_depend> -->
+  <!--<test_depend>actionlib</test_depend> -->
   <!-- <test_depend>roscpp</test_depend> -->
   <!-- <test_depend>rospy</test_depend> -->
   <!-- <test_depend>roslib</test_depend> -->
